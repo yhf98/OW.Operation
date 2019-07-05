@@ -1,0 +1,143 @@
+﻿@{
+    Layout = "~/Views/Shared/_Template.cshtml";
+}
+<!-- 侧边 -->
+<div class="page">
+    <div class="page-content d-flex align-items-stretch">
+        <!-- 侧边 -->
+        @Html.Partial("_sidebar")
+        <!--侧边-->
+        <div class="content-inner">
+            <!-- Page Header-->
+            <header class="page-header">
+                <div class="container-fluid">
+                    <h2 class="no-margin-bottom">会员车辆</h2>
+                </div>
+            </header>
+            <div class="col-lg-6" style="padding:10px;">
+                <div class="input-group">
+                    <input type="button" class="btn btn-primary" value="添加" style="margin-right:50px;" />
+                    <input type="text" class="form-control" placeholder="请输入查找内容">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" style="background-color:#796AEE;">Go!</button>
+                    </span>
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+            @*<div class="panel panel-default">
+
+        </div>*@
+
+            <!-- Table -->
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>
+                            编号
+                        </th>
+                        <th>
+                            姓名
+                        </th>
+                        <th>
+                            性别
+                        </th>
+                        <th>
+                            身份证
+                        </th>
+                        <th>
+                            电话
+                        </th>
+                        <th>
+                            车型
+                        </th>
+                        <th>
+                            车牌号
+                        </th>
+                        <th>
+                            操作
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>黄毛</td>
+                        <td>女</td>
+                        <td>1234564654864864864</td>
+                        <td>12345678910</td>
+                        <td>奇瑞QQ</td>
+                        <td>桂A·778885</td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#myModal">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>黄毛</td>
+                        <td>女</td>
+                        <td>1234564654864864864</td>
+                        <td>12345678910</td>
+                        <td>奇瑞QQ</td>
+                        <td>桂A·778885</td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#myModal">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>黄毛</td>
+                        <td>女</td>
+                        <td>1234564654864864864</td>
+                        <td>12345678910</td>
+                        <td>奇瑞QQ</td>
+                        <td>桂A·778885</td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#myModal">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>黄毛</td>
+                        <td>女</td>
+                        <td>1234564654864864864</td>
+                        <td>12345678910</td>
+                        <td>奇瑞QQ</td>
+                        <td>桂A·778885</td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#myModal">删除</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>黄毛</td>
+                        <td>女</td>
+                        <td>1234564654864864864</td>
+                        <td>12345678910</td>
+                        <td>奇瑞QQ</td>
+                        <td>桂A·778885</td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#myModal">删除</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- 弹窗删除 -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            @*<h4 class="modal-title" id="myModalLabel">Modal title</h4>*@
+                        </div>
+                        <div class="modal-body">
+                            <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>您确认要删除本条信息吗？
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消删除</button>
+                            <button type="button" class="btn btn-primary">确认删除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 弹窗删除 -->
+        </div>
+    </div>
+</div>
+

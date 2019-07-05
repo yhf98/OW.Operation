@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "register";
+    Layout = "~/Views/Shared/_Getinto.cshtml";
+}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>OW车牌管理系统</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="all,follow">
+<!--登录页面-->
+<body>
+    <div class="page login-page">
+        <div class="container d-flex align-items-center">
+            <div class="form-holder has-shadow">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="info d-flex align-items-center">
+                            <div class="content">
+                                <div class="logo">
+                                    <h1>OW车牌管理系统</h1>
+                                </div>
+                                <p>交通委提醒你：道路千万条，安全第一条，行车不规范，亲人两行泪</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 bg-white">
+                        <div class="form d-flex align-items-center">
+                            <div class="content">
+                                <form method="post" class="form-validate">
+                                    <div class="form-group">
+                                        <input id="login-username" type="text" name="loginUsername" required data-msg="Please enter your username" class="input-material">
+                                        <label for="login-username" class="label-material">用户名</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="login-password" type="password" name="loginPassword" required data-msg="Please enter your password" class="input-material">
+                                        <label for="login-password" class="label-material">密码</label>
+                                    </div><a id="login" href="../Home/index" class="btn btn-primary">登录</a>
+
+                                </form><a href="../Home/register" class="forgot-pass">新用户注册</a><br><small>如果忘记密码了？</small><a href="#" class="signup">请点击</a>
+                                <br />
+                                <p><a href="#">QQ</a>&nbsp;<span>/</span>&nbsp;<a href="#">微信</a>&nbsp;<span>/</span>&nbsp;<a href="#">扫码登录</a></p>
+                            </div>
+                           
+                        </div>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyrights text-center">
+            <p>
+                ow车牌管理系统 <a href="https://app.aikezo.com" class="external">我们的团队</a>
+            </p>
+        </div>
+    </div>
+</body>
+

@@ -501,6 +501,18 @@
     <Content Include="wwwroot\fontss\wa\fontawesome-webfont.woff" />
     <Content Include="wwwroot\fontss\wa\fontawesome-webfont.woff2" />
     <Content Include="wwwroot\fontss\wa\FontAwesome.otf" />
+    <Content Include="Views\Home\login.cshtml" />
+    <Content Include="Views\Home\register.cshtml" />
+    <Content Include="Views\Shared\_Getinto.cshtml" />
+    <Content Include="Views\Shared\Svgdisplay.cshtml" />
+    <Content Include="Views\Shared\_Template.cshtml" />
+    <Content Include="Views\Shared\_sidebar.cshtml" />
+    <Content Include="Views\Home\Member.cshtml" />
+    <Content Include="Views\Home\Recharge.cshtml" />
+    <Content Include="Views\Home\Foreign.cshtml" />
+    <Content Include="wwwroot\data\addresses.json" />
+    <Content Include="wwwroot\data\countries.json" />
+    <Content Include="Views\Home\Statistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="OW.Model\" />
