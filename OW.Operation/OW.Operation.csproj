@@ -163,6 +163,7 @@
     <Content Include="wwwroot\comm\css\style.red.css" />
     <Content Include="wwwroot\comm\css\style.sea.css" />
     <Content Include="wwwroot\comm\css\style.violet.css" />
+    <Content Include="wwwroot\comm\echarts.js" />
     <Content Include="wwwroot\comm\img\avatar-0.jpg" />
     <Content Include="wwwroot\comm\img\avatar-1.jpg" />
     <Content Include="wwwroot\comm\img\avatar-10.jpg" />

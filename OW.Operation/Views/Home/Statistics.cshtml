@@ -11,8 +11,43 @@
             <header class="page-header">
                 <div class="container-fluid">
                     <h2 class="no-margin-bottom">收入统计</h2>
+
                 </div>
             </header>
+
+            <div id="incomeCharts" class="incomeCharts" style="width: 600px;height:400px;">
+                
+            </div>
+
+
         </div>
     </div>
 </div>
+
+<script src="~/wwwroot/comm/echarts.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('incomeCharts'));
+    // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'OW收入统计'
+            },
+            tooltip: {},
+            legend: {
+                data:['月份']
+            },
+            xAxis: {
+                data: ["一月","二月","三月","四月","五月","六月","七月"]
+            },
+            yAxis: {},
+            series: [{
+                name: '收入',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+</script>
