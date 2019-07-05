@@ -7,5 +7,6 @@ namespace OW.Operation.OW.BLL
 {
     public class DataManager
     {
+
     }
 }
