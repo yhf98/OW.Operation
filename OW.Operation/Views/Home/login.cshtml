@@ -8,6 +8,9 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="all,follow">
+
+
+
 <!--登录页面-->
 <body>
     <div class="page login-page">
@@ -27,23 +30,23 @@
                     <div class="col-lg-6 bg-white">
                         <div class="form d-flex align-items-center">
                             <div class="content">
-                                <form method="post" class="form-validate">
+                                <div class="">
                                     <div class="form-group">
-                                        <input id="login-username" type="text" name="loginUsername" required data-msg="请输入用户名" class="input-material">
-                                        <label for="login-username" class="label-material">用户名</label>
+                                        <input id="username" type="text" name="loginUsername" required data-msg="请输入用户名" class="input-material">
+                                        <label for="username" class="label-material">用户名</label>
                                     </div>
                                     <div class="form-group">
-                                        <input id="login-password" type="password" name="loginPassword" required data-msg="请输入密码" class="input-material">
-                                        <label for="login-password" class="label-material">密码</label>
+                                        <input id="password" type="password" name="loginPassword" required data-msg="请输入密码" class="input-material">
+                                        <label for="password" class="label-material">密码</label>
                                     </div><button id="login" class="btn btn-primary">登录</button>
 
-                                </form><a href="../Home/register" class="forgot-pass">新用户注册</a><br><small>如果忘记密码了？</small><a href="#" class="signup">请点击</a>
+                                </div><a href="../Home/register" class="forgot-pass">新用户注册</a><br><small>如果忘记密码了？</small><a href="#" class="signup">请点击</a>
                                 <br />
                                 <p><a href="#">QQ</a>&nbsp;<span>/</span>&nbsp;<a href="#">微信</a>&nbsp;<span>/</span>&nbsp;<a href="#">扫码登录</a></p>
                             </div>
-                           
+
                         </div>
-                     
+
                     </div>
                 </div>
             </div>
@@ -54,5 +57,56 @@
             </p>
         </div>
     </div>
+
+    <!--登录逻辑------------------------------------------------------->
+  .<script src="../wwwroot/comm/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#login").click(function () {
+               
+                $.ajax({
+                    url: "../Home/Login",
+                    type: "post",
+                    dataType: "json",
+                    data: { "name": $("#username").val(), "pwd": $("#password").val() },
+                    success: function (data) {
+                        debugger
+                        if (typeof data == "string") data = $.parseJSON(data);
+
+                        if (data.status == 1) {
+                            debugger
+                            $.message({
+                                message: '登录成功！',
+                                type: 'success'
+                            });
+
+                            setTimeout(function () {
+                                location.href = data.action;
+                            }, 2000);
+                        }
+
+                        else {
+                            
+                        $.message({
+                            message: data.message,
+                            type: "error"
+                         })
+                        
+                        }
+                    },
+                    error: function (error) {
+                        $.message({
+                            message: data.message,
+                            type: 'error'
+                        });
+                    }
+
+                });
+
+            });
+        });
+    </script>
+    <!--登录逻辑------------------------------------------------------->
+
 </body>
 

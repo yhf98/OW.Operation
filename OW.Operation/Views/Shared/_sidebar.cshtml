@@ -1,9 +1,12 @@
-﻿<nav class="side-navbar">
+﻿
+@using OW.Operation.OW.Model
+<nav class="side-navbar">
     <!-- Sidebar Header-->
     <div class="sidebar-header d-flex align-items-center">
         <div class="avatar"><img src="~/wwwroot/comm/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
         <div class="title">
-            <h1 class="h4">吴某人</h1>
+            @{ UserInfo info = Session["user"] as UserInfo;}
+            <h1 class="h4">@info.UserName</h1>
             <p>欢迎使用OW管理系统</p>
         </div>
     </div>
@@ -16,7 +19,7 @@
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                 <li><a href="../Home/Member">会员车辆</a></li>
                 <li><a href="../Home/Recharge">充值车辆</a></li>
-                <li><a href="../Home/Foreign">外来车辆</a></li>
+                <li><a href="../Home/Foreign">外来车辆</a></li>y
             </ul>
         </li>
 
