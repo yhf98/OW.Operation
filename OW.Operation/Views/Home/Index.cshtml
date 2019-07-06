@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
-   
+
 </head>
 <body>
     <div class="page">
@@ -116,8 +116,8 @@
                             <div class="chart col-lg-3 col-12">
                                 <!-- 车库位置图  -->
                                 <div class="bar-chart has-shadow bg-white" style="position:relative;">
-                                    <div class="title"><strong class="text-violet">95%</strong><br><small>当前系统正常运行时间</small></div>
-                                    <div id="system" class="system" style="width:100%;height:100%;">
+                                    @*<div class="title"><strong class="text-violet">95%</strong><br><small>当前系统正常运行时间</small></div>*@
+                                    <div id="system" class="system" style="width:100%;height:300px">
 
                                     </div>
                                 </div>
@@ -217,29 +217,24 @@
         </div>
     </div>
     <script src="~/wwwroot/comm/echarts.js"></script>
-    <script>
-         var myChart = echarts.init(document.getElementById('system'));
-    // 指定图表的配置项和数据
-        var option = {
+    <script>       
+        var myChart = echarts.init(document.getElementById('system'));
+        option = {
             title: {
-                text: 'OW收入统计'
-            },
-            tooltip: {},
-            legend: {
-                data:['月份']
+                text: '日收入统计图'
             },
             xAxis: {
-                data: ["一月","二月","三月","四月","五月","六月","七月"]
+                type: 'category',
+                data: ['0', '3', '6', '9', '12', '15', '18', '21', '24']
             },
-            yAxis: {},
+            yAxis: {
+                type: 'value'
+            },
             series: [{
-                name: '收入',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
+                data: [100, 110, 120, 130, 100, 133, 90,180,70],
+                type: 'line'
             }]
         };
-
-        // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     </script>
 </body>
