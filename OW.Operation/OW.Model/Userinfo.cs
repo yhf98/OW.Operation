@@ -21,5 +21,9 @@ namespace OW.Operation.OW.Model
         public string UserAddress { get; set; }
 
         public int UserTypeID { get; set; }
+
+        public string Usersfz { get; set; }
+
+        public string UserPhone { get; set; }
     }
 }

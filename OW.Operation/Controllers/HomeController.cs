@@ -19,6 +19,17 @@ namespace OW.Operation.Controllers
         [Login(IsCheck = true)]
         public ActionResult Index()
         {
+            //会员车辆
+            ViewBag.hcar = OW.BLL.DataManager.GetCarsByType(2).Count;
+            //充值
+            ViewBag.ccar = OW.BLL.DataManager.GetCarsByType(3).Count;
+            //外来
+            ViewBag.wcar = OW.BLL.DataManager.GetCarsByType(1).Count;
+
+            ViewBag.pcount = OW.BLL.DataManager.GetParkingInfos();
+
+            ViewBag.scared = OW.BLL.DataManager.GetCarSettled();
+
             return View();
         }
         public ActionResult Svgdisplay()
@@ -32,8 +43,7 @@ namespace OW.Operation.Controllers
        
         public ActionResult login()
         {
-            ViewBag.Message = "Your contact page.";
-
+            
             return View();
         }
         [HttpPost]
@@ -44,7 +54,7 @@ namespace OW.Operation.Controllers
                 return JsonConvert.SerializeObject(new Msg() { status=0, message="账号或密码不能为空", action="" });
             }
 
-            UserInfo user = OW.BLL.DataManager.GetUser(name,pwd);
+            AdminInfo user = OW.BLL.DataManager.GetAdmin(name,pwd);
             if (user != null)
             {
                 Session["user"] = user;
@@ -62,8 +72,7 @@ namespace OW.Operation.Controllers
         /// <returns></returns>
         public ActionResult register()
         {
-            ViewBag.Message = "Your contact page.";
-
+            
             return View();
         }
         /// <summary>
@@ -73,10 +82,10 @@ namespace OW.Operation.Controllers
         [Login(IsCheck = true)]
         public ActionResult Member()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.hcar = OW.BLL.DataManager.GetCarsByType(2);
             return View();
         }
+
         /// <summary>
         /// 充值车辆
         /// </summary>
@@ -84,8 +93,7 @@ namespace OW.Operation.Controllers
         [Login(IsCheck = true)]
         public ActionResult Recharge()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.ccar = OW.BLL.DataManager.GetCarsByType(3);
             return View();
         }
         /// <summary>
@@ -95,10 +103,12 @@ namespace OW.Operation.Controllers
         [Login(IsCheck = true)]
         public ActionResult Foreign()
         {
-            ViewBag.Message = "Your contact page.";
-
+            ViewBag.wcar = OW.BLL.DataManager.GetCarsByType(1);
             return View();
         }
+
+
+
         /// <summary>
         /// 收入统计
         /// </summary>
@@ -106,8 +116,7 @@ namespace OW.Operation.Controllers
         [Login(IsCheck = true)]
         public ActionResult Statistics()
         {
-            ViewBag.Message = "Your contact page.";
-
+           
             return View();
         }
     }

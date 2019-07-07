@@ -151,6 +151,7 @@
     <Compile Include="OW.BLL\DataManager.cs" />
     <Compile Include="OW.DAL\DataServer.cs" />
     <Compile Include="OW.DAL\DBHelper.cs" />
+    <Compile Include="OW.Model\AdminInfo.cs" />
     <Compile Include="OW.Model\CarSettledInfo.cs" />
     <Compile Include="OW.Model\CarsInfo.cs" />
     <Compile Include="OW.Model\CarTypeInfo.cs" />

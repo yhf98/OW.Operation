@@ -37,5 +37,146 @@ namespace OW.Operation.OW.DAL
             return list;
 
         }
+
+        /// <summary>
+        /// 车辆信息查询
+        /// </summary>
+        /// <returns></returns>
+        public static List<CarsInfo> GetCars(int type)
+        {
+            string sql = "SELECT c.CarID,c.License,c.Brand,c.Color,t.CarType,c.UserID,u.UserName,u.UserPhone,u.Usersfz,u.UserSex FROM t_Cars c,CarType t,t_Users u WHERE c.CarTypeID = t.CarTypeID and u.UserID = c.UserID and t.CarTypeID="+type+"";
+
+            List<CarsInfo> list = new List<CarsInfo>();
+
+            using (MySqlDataReader dr = DBHelper.GetReader(sql))
+            {
+                while (dr.Read())
+                {
+                    CarsInfo info = new CarsInfo();
+                    info.CarID = Convert.ToInt32(dr["CarID"]);
+                    info.License = Convert.ToString(dr["License"]);
+                    info.Brand = Convert.ToString(dr["Brand"]);
+                    info.Color = Convert.ToString(dr["Color"]);
+                    info.CarType = Convert.ToString(dr["CarType"]);
+                    info.UserID = Convert.ToInt32(dr["UserID"]);
+                    info.UserName = Convert.ToString(dr["UserName"]);
+                    info.UserPhone = Convert.ToString(dr["UserPhone"]);
+                    info.Usersfz = Convert.ToString(dr["Usersfz"]);
+                    info.UserSex = Convert.ToString(dr["UserSex"]);
+
+                    list.Add(info);
+                }
+            }
+            return list;
+        }
+
+        public static List<CarsInfo> GetCars()
+        {
+            string sql = "SELECT c.CarID,c.License,c.Brand,c.Color,t.CarType,c.UserID,u.UserName,u.UserPhone,u.Usersfz,u.UserSex FROM t_Cars c,CarType t,t_Users u WHERE c.CarTypeID = t.CarTypeID and u.UserID = c.UserID";
+
+            List<CarsInfo> list = new List<CarsInfo>();
+
+            using (MySqlDataReader dr = DBHelper.GetReader(sql))
+            {
+                while (dr.Read())
+                {
+                    CarsInfo info = new CarsInfo();
+                    info.CarID = Convert.ToInt32(dr["CarID"]);
+                    info.License = Convert.ToString(dr["License"]);
+                    info.Brand = Convert.ToString(dr["Brand"]);
+                    info.Color = Convert.ToString(dr["Color"]);
+                    info.CarType = Convert.ToString(dr["CarType"]);
+                    info.UserID = Convert.ToInt32(dr["UserID"]);
+                    info.UserName = Convert.ToString(dr["UserName"]);
+                    info.UserPhone = Convert.ToString(dr["UserPhone"]);
+                    info.Usersfz = Convert.ToString(dr["Usersfz"]);
+                    info.UserSex = Convert.ToString(dr["UserSex"]);
+
+                    list.Add(info);
+                }
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 车位查询
+        /// </summary>
+        /// <returns></returns>
+        public static int GetParkingInfos()
+        {
+            string sql = "SELECT COUNT(*) FROM t_Parking WHERE STATUS=0";
+            using (MySqlDataReader dr = DBHelper.GetReader(sql))
+            {
+
+                if (dr.Read())
+                {
+                    return 50-Convert.ToInt32(dr[0]);
+                }
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 车辆入最新驻信息
+        /// </summary>
+        /// <returns></returns>
+        public static List<CarSettledInfo> GetCarSettled()
+        {
+            string sql = "SELECT* FROM t_CarSettled d,t_Cars c where d.CarID=c.CarID  ORDER BY c.CarID DESC limit 0,5";
+            List<CarSettledInfo> list = new List<CarSettledInfo>();
+
+            using (MySqlDataReader dr = DBHelper.GetReader(sql))
+            {
+                while(dr.Read())
+                {
+                    CarSettledInfo info = new CarSettledInfo();
+
+                    info.SettleID = Convert.ToInt32(dr["SettleID"]);
+                    info.SettledDate = Convert.ToString(dr["SettledDate"]);
+                    info.License = Convert.ToString(dr["License"]);
+                    info.Brand = Convert.ToString(dr["Brand"]);
+                    info.Color = Convert.ToString(dr["Color"]);
+                    info.Color = Convert.ToString(dr["Color"]);
+                    list.Add(info);
+                    
+                }
+
+                return list;
+
+            }
+
+        }
+
+        /// <summary>
+        /// 管理员表
+        /// </summary>
+        /// <returns></returns>
+        public static List<AdminInfo> GetAdmin()
+        {
+            string sql = "SELECT * FROM t_Admin";
+            List<AdminInfo> list = new List<AdminInfo>();
+
+            using (MySqlDataReader dr = DBHelper.GetReader(sql))
+            {
+                while (dr.Read())
+                {
+                    AdminInfo info = new AdminInfo();
+
+                    info.AdminID = Convert.ToInt32(dr["AdminID"]);
+                    info.AdminName = Convert.ToString(dr["AdminName"]);
+                    info.AdminPwd = Convert.ToString(dr["AdminPwd"]);
+                    info.AdminEmail = Convert.ToString(dr["AdminEmail"]);
+                    list.Add(info);
+                }
+
+                return list;
+
+            }
+
+        }
+
+
+
+
     }
 }

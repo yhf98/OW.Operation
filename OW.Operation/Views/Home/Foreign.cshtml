@@ -1,6 +1,8 @@
 ﻿@{
     Layout = "~/Views/Shared/_Template.cshtml";
 }
+@using OW.Operation.OW.Model
+
 <div class="page">
     <div class="page-content d-flex align-items-stretch">
         <!-- 侧边 -->
@@ -39,52 +41,21 @@
                             操作
                         </th>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>奇瑞QQ</td>
-                        <td>桂A·778885</td>
-                        <td>
-                            <a href="#">充值</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-
-
-                        <td>奇瑞QQ</td>
-                        <td>桂A·778885</td>
-                        <td>
-                            <a href="#">充值</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-
-
-                        <td>奇瑞QQ</td>
-                        <td>桂A·778885</td>
-                        <td>
-                            <a href="#">充值</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-
-                        <td>奇瑞QQ</td>
-                        <td>桂A·778885</td>
-                        <td>
-                            <a href="#">充值</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-
-                        <td>奇瑞QQ</td>
-                        <td>桂A·778885</td>
-                        <td>
-                            <a href="#">充值</a>
-                        </td>
-                    </tr>
+                    @foreach (CarsInfo item in ViewBag.wcar)
+                    {
+                        <tr>
+                            <td>@item.CarID</td>
+                            <td>@item.UserName</td>
+                            <td>@item.UserSex</td>
+                            <td>@item.Usersfz</td>
+                            <td>@item.UserPhone</td>
+                            <td>@item.Brand</td>
+                            <td>@item.License</td>
+                            <td>
+                                <a href="#" data-toggle="modal" data-target="#myModal">删除</a>
+                            </td>
+                        </tr>
+                    }
                 </table>
             </div>
         </div>

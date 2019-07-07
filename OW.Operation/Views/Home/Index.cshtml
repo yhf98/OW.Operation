@@ -2,7 +2,7 @@
     ViewBag.Title = "OW车辆管理系统";
     Layout = "~/Views/Shared/_Template.cshtml";
 }
-
+@using OW.Operation.OW.Model
 <!DOCTYPE html>
 
 <html>
@@ -40,10 +40,10 @@
                                     <div class="title">
                                         <span>会员<br>车辆</span>
                                         <div class="progress">
-                                            <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
+                                            <div role="progressbar" style="width: @ViewBag.hcar%; height: 4px;" aria-valuenow="@ViewBag.hcar" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
                                         </div>
                                     </div>
-                                    <div class="number"><strong>25</strong></div>
+                                    <div class="number"><strong>@ViewBag.hcar</strong></div>
                                 </div>
                             </div>
                             <!-- Item -->
@@ -53,10 +53,10 @@
                                     <div class="title">
                                         <span>外来<br>车辆</span>
                                         <div class="progress">
-                                            <div role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+                                            <div role="progressbar" style="width: @ViewBag.ccar%; height: 4px;" aria-valuenow="@ViewBag.ccar" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
                                         </div>
                                     </div>
-                                    <div class="number"><strong>70</strong></div>
+                                    <div class="number"><strong>@ViewBag.ccar</strong></div>
                                 </div>
                             </div>
                             <!-- Item -->
@@ -66,10 +66,10 @@
                                     <div class="title">
                                         <span>充值<br>车辆</span>
                                         <div class="progress">
-                                            <div role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
+                                            <div role="progressbar" style="width: @ViewBag.wcar%; height: 4px;" aria-valuenow="@ViewBag.wcar" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
                                         </div>
                                     </div>
-                                    <div class="number"><strong>40</strong></div>
+                                    <div class="number"><strong>@ViewBag.wcar</strong></div>
                                 </div>
                             </div>
                             <!-- Item -->
@@ -79,10 +79,10 @@
                                     <div class="title">
                                         <span>剩余<br>库位</span>
                                         <div class="progress">
-                                            <div role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
+                                            <div role="progressbar" style="width: @ViewBag.pcount%; height: 4px;" aria-valuenow="@ViewBag.pcount" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
                                         </div>
                                     </div>
-                                    <div class="number"><strong>50</strong></div>
+                                    <div class="number"><strong>@ViewBag.pcount</strong></div>
                                 </div>
                             </div>
                         </div>
@@ -133,28 +133,39 @@
                 <!-- Projects Section-->
                 <section class="projects no-padding-top">
                     <div class="container-fluid">
-                        <!-- Project-->
-                        <div class="project">
-                            <div class="row bg-white has-shadow">
-                                <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                                    <div class="project-title d-flex align-items-center">
-                                        <div class="image has-shadow"><img src="~/wwwroot/comm/img/project-1.jpg" alt="..." class="img-fluid"></div>
 
-                                        <div class="text">
-                                            <h3 class="h4">车牌号：桂A·7777777</h3><small>劳斯莱斯</small>
+                        @foreach (CarSettledInfo item in ViewBag.scared)
+                        {
+                            <!-- Project-->
+                            <div class="project">
+                                <div class="row bg-white has-shadow">
+                                    <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                                        <div class="project-title d-flex align-items-center">
+                                            <div class="image has-shadow"><img src="~/wwwroot/comm/img/project-1.jpg" alt="..." class="img-fluid"></div>
+
+                                            <div class="text">
+                                                <h3 class="h4">车牌号：@item.License</h3><small>@item.Brand</small>
+                                            </div>
                                         </div>
+                                        <div class="project-date"><span class="hidden-sm-down">@item.SettledDate</span></div>
                                     </div>
-                                    <div class="project-date"><span class="hidden-sm-down">6月27凌晨4点24分入库</span></div>
-                                </div>
-                                <div class="right-col col-lg-6 d-flex align-items-center">
-                                    <div class="time"><i class="fa fa-clock-o"></i>6月28日12:00出库</div>
-                                    <div class="comments"><i class="fa fa-comment-o"></i>会员车：本次停车免费</div>
+                                    <div class="right-col col-lg-6 d-flex align-items-center">
+                                        <div class="time"><i class="fa fa-clock-o"></i>6月28日12:00出库</div>
+                                        <div class="comments"><i class="fa fa-comment-o"></i>会员车：本次停车免费</div>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Project-->
-                        <div class="project">
+                            <!-- Project-->
+                        }
+
+
+
+
+
+
+
+                        @*<div class="project">
                             <div class="row bg-white has-shadow">
                                 <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
                                     <div class="project-title d-flex align-items-center">
@@ -210,6 +221,9 @@
                                 </div>
                             </div>
                         </div>
+                    
+
+                        //////*@
                     </div>
                 </section>
 
