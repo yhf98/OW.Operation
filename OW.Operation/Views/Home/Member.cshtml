@@ -2,6 +2,7 @@
     Layout = "~/Views/Shared/_Template.cshtml";
 }
 
+
 @using OW.Operation.OW.Model
 
 <!-- 侧边 -->
@@ -71,13 +72,14 @@
                             <td>@item.Brand</td>
                             <td>@item.License</td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#myModal">删除</a>
+                                <a href="#" class="GetID" data-toggle="modal" data-target="#myModal">删除</a>
                             </td>
                         </tr>
                     }
 
                 </table>
             </div>
+            <div id="page" class="page_div" style="width:800px;height:50px;margin:0 auto;"></div>
             <!-- 弹窗删除 -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
@@ -91,7 +93,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">取消删除</button>
-                            <button type="button" class="btn btn-primary">确认删除</button>
+                            <button type="button" class="btn btn-primary" id="deleteCar">确认删除</button>
                         </div>
                     </div>
                 </div>
@@ -101,3 +103,77 @@
     </div>
 </div>
 
+<script src="~/wwwroot/comm/jquery-3.3.1.js"></script>
+<script src="~/wwwroot/msg/message.js"></script>
+<script src="~/wwwroot/pageSplit/pageMe.js"></script>
+<script>
+    $(function () {
+        $(".GetID").click(function () {
+            var id = $(this).parents("tr").children("td").eq(0).text();
+            $.ajax({
+                url: "/Home/GetID",
+                type: "get",
+                data: { "id": id },
+                success: function (data) {
+
+                },
+                error: function (error) {
+
+                }
+            });
+        });
+
+
+        $("#deleteCar").click(function () {
+            $.ajax({
+                url: "/Home/DeleteCar",
+                type: "get",
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    if (typeof data == "string") data = $.parseJSON(data);
+                    if (data.status == 1) {
+                        $.message({
+                            message: '删除成功',
+                            type: 'success'
+                        });
+
+                        setTimeout(function () {
+                            location.href = "../Home/Member";
+                        }, 2000);
+                    }
+
+                    else {
+
+                        $.message({
+                            message: data.message,
+                            type: "error"
+                        })
+
+                    }
+                },
+
+                error: function (error) {
+                    $.message({
+                        message: "网络请求失败！",
+                        type: "error"
+                    })
+                }
+            });
+
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    $("#page").paging({
+        pageNum: @ViewBag.currentPage, // 当前页面
+        totalNum: @ViewBag.totalPage, // 总页码
+        totalList: @ViewBag.total, // 记录总数量
+        callback: function (num) { //回调函数
+            console.log(num);
+            //alert(num);
+            location.href = '../Home/Member?page=' + num;
+        }
+    });
+</script>

@@ -1,0 +1,250 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AIKE支付页面</title>
+
+    <link href="../wwwroot/lib/css/bootstrap.css" rel="stylesheet" />
+    <link href="../wwwroot/pay/pay.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" rel="stylesheet">
+
+    <script src="../wwwroot/comm/jquery-3.3.1.js"></script>
+    <script src="../wwwroot/lib/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+</head>
+<body style="background-color:#eeeeee;">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header" style="margin-left:20%;">
+
+                <div style="margin-top:10px;width:170px;border-right:1px solid #000000;">
+                    <a href="../Home/Index">
+                        <img src="../wwwroot/pay/img/LOGO2.png" />
+                    </a>
+                </div>
+
+            </div>
+            <div style="float:left;font-size:20px;line-height:50px;margin-left:20px;font-weight:600;">支付</div>
+        </div>
+    </nav>
+    <div id="Comment">
+        <div id="Choice">
+            <div class="left">
+                <div style="height:95px;">
+                    <p>订单编号：<span id="order_infoo" style="font-weight:100;color:#808080;">20190416147852369</span></p>
+                    <p>支付金额：<span class="sp_color" id="pay_money">@ViewBag.m</span>元</p>
+                    <p>实付金额：<span id="price"></span></p>
+                    <p>如未在规定时间内支付，系统将终止本次交易：<span id="ttl" style="color:#ff6a00;"></span></p>
+
+                </div>
+                <hr />
+                <span id="paytype">1</span>
+                <h5>支付方式：</h5>
+                <div class="col-xs-6" style="position:absolute;right:0px;top:0px;">
+
+                </div>
+                <div id="btn_payment">
+
+                    <button type="button" class="pay_button btn btn-default" style="background-image: url('../wwwroot/pay/img/zfb.png');">支付宝支付</button>
+                    <button type="button" class="pay_button btn btn-default" style="background-image: url('../wwwroot/pay/img/wx.png');">微信支付</button>
+                </div>
+                <div style="width:100%;height:300px;padding:20px;border:0px solid red;position:relative;float:left;">
+
+
+                    <div id="qrcode" style="float:left;"></div>
+                    <div class="tips" style="width:255px;height:255px; float:left; border:0px solid red;margin-left:30px;">
+                        <img src="../wwwroot/pay/img/wxts.png" id="ico1" style="display:none;" />
+
+                        <img src="../wwwroot/pay/img/zfb1.png" id="ico2" style="display:none;width:190px;height:250px;" />
+                    </div>
+
+                </div>
+                <p id="txt-ts" style="font-size:20px;margin-left:50px;"></p>
+            </div>
+        </div>
+    </div>
+    <!--支付成功页面-->
+    <div class="Payment" style="display:none;">
+        <p class="sce"><span class="glyphicon glyphicon-ok-sign" style="color:#4cff00;font-size:22px;"></span>恭喜您！支付成功</p>
+        <div class="btnsce">
+            <h5>订单金额：<span>1000.00</span>&nbsp;订单编号：<span>20190416147852369</span></h5>
+            <h6>支付完成前，请不要关闭支付验证窗口</h6>
+            <h6>支付完成后，请根据您支付的情况点击下面按钮</h6>
+            <button type="button" class="btn btn-success">查看订单</button>&nbsp;&nbsp;<button type="button" class="btn btn-default">支付成功</button>
+        </div>
+        <div class="bordes">
+            支付成功！页面将于
+            <span>
+                <a id="time">30</a>
+            </span>秒后<a href="../Home/Details">返回项目详情页面</a>
+        </div>
+    </div>
+
+
+    <!---------------------------支付页面-------------------------------------------->
+
+    <div id="modalPaySuccess" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">支付完成</h4>
+                </div>
+                <div class="modal-body">
+                    <p>跳转到：<span id="redirectURL"></span></p>
+                </div>
+                <div class="modal-footer">
+                    @*<a href="/" class="btn btn-default">新的测试</a>*@
+                    @*<button type="button" class="btn btn-default" data-dismiss="modal">留在此页面</button>*@
+                    <a id="aRedirectURL" href="" class="btn btn-primary">跳转</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---------------------------支付页面-------------------------------------------->
+
+
+    <script>
+        var PayTypes = { '1': '微信', '2': '支付宝' };
+        var OrderStatuses = { '-1': '未匹配订单', '0': '等待支付', '1': '支付完成', '2': '已关闭' };
+
+        $(function () {
+            var payType;//支付类型
+            var payPrice = $("#pay_money").text();//支付钱
+            var payRedirect = "../Home/payment_suc";//回调路径
+            var payOrder_id = 'AIKEOrders' + new Date().getTime();// 订单号
+            var payOrder_info = 'payOrder_info' + new Date().getTime(); //订单详情
+
+            //  $('#inputOrderID').val('TestOrder' + new Date().getTime());
+            $("#order_infoo").text(payOrder_id);
+            //$('form').validator('update');
+
+            var TimeEmpire; // 二维码过期时间
+
+            $('.pay_button').click(function (e) {
+                var types = $(this).text();
+                if (types == "微信支付") {
+                    payType = 1;
+                    $("#ico1").css("display", "block");
+                    $("#ico2").css("display", "none");
+                    $(".pay_button").button('loading');
+                    $("#txt-ts").text("请使用微信扫码付款")
+                }
+                else {
+                    payType = 2;
+                    $("#ico2").css("display", "block");
+                    $("#ico1").css("display", "none");
+                    $(".pay_button").button('loading')
+                    $("#txt-ts").text("请使用支付宝扫码付款")
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: '../Pay/Pay',
+                    data: {
+                        "type": payType,
+                        "price": payPrice,
+                        "redirect": payRedirect,
+                        "order_id": payOrder_id,
+                        "order_info": payOrder_info
+                    },
+                    dataType: "json",
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                    success: function (res) {
+                        if (res.code ==4006) {
+                            alert(res.message);
+                            return;
+                        }
+                        debugger
+                        $('.content').removeClass('hide');
+                        $('#codeResult').text(JSON.stringify(res, null, '  '));
+                        if (res.result && res.code === 200) {
+
+                            debugger
+                            $('#qrcode').attr('src', res.info.qrcode);
+                            var payType = PayTypes[res.info.pay_type.toString()] || '未知支付方式';
+                            $('#qrcode').qrcode(res.info.pay_url); // 生成二维码
+
+                            debugger
+                            $('#price').text(payType + ': ' + res.info.real_price + '元');
+                            // 根据接口返回的 ttl，设置过期时间（ttl 的单位是秒）
+                            TimeEmpire = new Date().getTime() + res.info.ttl * 1000;
+                            updateTTL();
+                        }
+                    }
+                });
+                return false;
+            });
+
+            // 更新页面上的倒计时
+            function updateTTL() {
+                var timeLeftSec = parseInt((TimeEmpire - new Date().getTime()) / 1000); // 根据过期时间计算剩余秒数
+                if (timeLeftSec <= 0) {
+                    // 清空收款码，生成一个灰色的无效二维码
+                    $('#qrcode').html('').qrcode({ text: 'http://app.aikezc.com/', foreground: '#C0C4CC' });
+                    $('#ttl').html('<span style="color:#F56C6C">二维码过期</span>');
+                } else {
+                    $('#ttl').text('剩余时间：' + timeLeftSec + '秒');
+                    setTimeout(function () { updateTTL(); }, 1000);
+                    checkOrder();
+                }
+            }
+
+            var checkTimes = 0; // 检查订单状态次数
+
+            // 检查订单状态
+            function checkOrder() {
+                var redirectURL = "http://app.aikezc.com";
+                if ($("#paytype").text() == 1) {
+                    redirectURL = "../personal/personal";
+                }
+                else if ($("#paytype").text() == 2) {
+                    redirectURL = "../payment/payment?orderid=" + payOrder_id + ""
+                }
+                else {
+                    redirectURL = "../payment/payment?orderid=" + payOrder_id + ""
+                }
+                debugger
+                $.ajax({
+                    type: 'POST',
+                    url: '../Pay/order',
+                    dataType: "json",
+                    data: { "order_id": payOrder_id },
+                    contentType: "application/x-www-form-urlencoded;charset=utf-8",
+
+                    success: function (res) {
+                        debugger
+                        var statusStr = OrderStatuses[res.info.status] || '未知状态';
+                        $.toast({ text: statusStr + "... (" + (++checkTimes) + ")", bgColor: '#CCFF99', textColor: '#303133', hideAfter: 3000, position: 'top-right' });
+                        if (res.info.status == 1) { // 支付完成
+                            $.message({
+                                message: "支付成功！等待三秒中跳转",
+                                type:"suceess"
+                            });
+
+                            setTimeout(function () {
+                                location.href="../"
+                            }, 2000);
+                        }
+                    }
+                });
+            }
+
+            $('#modalPaySuccess').on('hidden.bs.modal', function (e) {
+                $('#redirectURL').text('');
+                $('#aRedirectURL').attr('href', '');
+            });
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,102 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    font-family: "宋体";
+}
+
+h5 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#Comment {
+    width: 80%;
+    height: 700px;
+    background-color: #ffffff;
+    margin: auto;
+}
+
+    #Comment .Payment {
+        width: 60%;
+        height: 25%;
+        margin: auto;
+        margin-top: 200px;
+    }
+
+        #Comment .Payment p {
+            width: 100%;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        #Comment .Payment .sce {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        #Comment .Payment .txtsce {
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        #Comment .Payment h5 span {
+            color: #ff0000;
+        }
+
+        #Comment .Payment .btnsce {
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+    /*倒计时样式*/
+    #Comment .bordes {
+        margin-top: 60px;
+        float: right;
+    }
+
+#time {
+    color: #ff0000;
+}
+/*选择支付页面样式*/
+#Choice {
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    padding-top: 30px;
+}
+
+    #Choice .left {
+        margin-top: 50px;
+    }
+
+    #Choice h5 {
+        font-size: 20px;
+    }
+
+    #Choice .sp_color {
+        color: #ff0000;
+    }
+
+    #Choice .btn {
+        background-position: 5px;
+        background-size: 25px;
+        background-repeat: no-repeat;
+        width: 140px;
+        height: 40px;
+    }
+
+#QR_code {
+    float: left;
+}
+
+    #QR_code img {
+        width: 240px;
+        height: 240px;
+    }
+
+#Choice .Tips {
+    float: right;
+    margin-right: 330px;
+}

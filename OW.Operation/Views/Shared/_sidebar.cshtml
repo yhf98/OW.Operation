@@ -1,12 +1,11 @@
 ﻿
-@using OW.Operation.OW.Model
 <nav class="side-navbar">
     <!-- Sidebar Header-->
     <div class="sidebar-header d-flex align-items-center">
         <div class="avatar"><img src="~/wwwroot/comm/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
         <div class="title">
-            @{ AdminInfo info = Session["user"] as AdminInfo;}
-            <h1 class="h4">@info.AdminName</h1>
+           
+            <h1 class="h4">@Session["Username"]</h1>
             <p>欢迎使用OW管理系统</p>
         </div>
     </div>

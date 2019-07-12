@@ -79,5 +79,15 @@ namespace OW.Operation.OW.BLL
             return DAL.DataServer.GetAdmin().Find(F=>F.AdminName==name&&F.AdminPwd==pwd ); ;
         }
 
-    } 
+        /// <summary>
+        /// 删除车辆
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool DeleteCar(int id)
+        {
+            return DAL.DataServer.DeleteCar(id);
+        }
+
+     } 
 }

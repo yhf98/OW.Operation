@@ -16,9 +16,9 @@
                 </div>
             </header>
             <div class="col-lg-6" style="padding:10px;">
-            
+
                 <div class="input-group">
-                    <input type="button" class="btn btn-primary" value="到期提醒" style="margin-right:50px;"/>
+                    <input type="button" class="btn btn-primary" value="到期提醒" style="margin-right:50px;" />
                     <input type="text" class="form-control" placeholder="请输入查找内容">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" style="background-color:#796AEE;">Go!</button>
@@ -30,7 +30,6 @@
                 <table class="table">
 
                     <tr>
-
                         <th>
                             编号
                         </th>
@@ -52,24 +51,9 @@
                         <th>
                             车牌号
                         </th>
-                        <th>到期时间</th>
                         <th>
                             操作
                         </th>
-                    </tr>
-                    <tr>
-
-                        <td>1</td>
-                        <td>黄毛</td>
-                        <td>女</td>
-                        <td>1234564654864864864</td>
-                        <td>12345678910</td>
-                        <td>奇瑞QQ</td>
-                        <td>桂A·778885</td>
-                        <td>2020年7月5日</td>
-                        <td>
-                            <a href="#" data-toggle="modal" data-target="#myModal">删除</a>
-                        </td>
                     </tr>
 
                     @foreach (CarsInfo item in ViewBag.ccar)
@@ -83,13 +67,16 @@
                             <td>@item.Brand</td>
                             <td>@item.License</td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#myModal">删除</a>
+                                <a href="#" data-toggle="modal" class="GetID" data-target="#myModal">删除</a>
                             </td>
                         </tr>
                     }
 
                 </table>
             </div>
+
+            <div id="page" class="page_div" style="width:800px;height:50px;margin:0 auto;"></div>
+
             <!-- 弹窗删除 -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
@@ -103,7 +90,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">取消删除</button>
-                            <button type="button" class="btn btn-primary">确认删除</button>
+                            <button type="button" id="deleteCar" class="btn btn-primary">确认删除</button>
                         </div>
                     </div>
                 </div>
@@ -113,4 +100,74 @@
     </div>
 </div>
 
+<script src="~/wwwroot/comm/jquery-3.3.1.js"></script>
+<script src="~/wwwroot/pageSplit/pageMe.js"></script>
+<script>
+    $(function () {
+        $(".GetID").click(function () {
+            var id = $(this).parents("tr").children("td").eq(0).text();
+            $.ajax({
+                url: "/Home/GetID",
+                type: "get",
+                data: { "id": id },
+                success: function (data) {
 
+                },
+                error: function (error) {
+
+                }
+            });
+        });
+
+
+        $("#deleteCar").click(function () {
+            $.ajax({
+                url: "/Home/DeleteCar",
+                type: "get",
+                data: {},
+                success: function (data) {
+                    if (typeof data == "string") data = $.parseJSON(data);
+                    if (data.status == 1) {
+                        $.message({
+                            message: '删除成功',
+                            type: 'success'
+                        });
+
+                        setTimeout(function () {
+                            location.href = "../Home/Recharge";
+                        }, 2000);
+                    }
+
+                    else {
+
+                        $.message({
+                            message: data.message,
+                            type: "error"
+                        })
+
+                    }
+                },
+                error: function (error) {
+                    $.message({
+                        message: "网络请求失败！",
+                        type: "error"
+                    })
+                }
+            });
+
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    $("#page").paging({
+        pageNum: @ViewBag.currentPage, // 当前页面
+        totalNum: @ViewBag.totalPage, // 总页码
+        totalList: @ViewBag.total, // 记录总数量
+        callback: function (num) { //回调函数
+            console.log(num);
+            //alert(num);
+            location.href = '../Home/Recharge?page=' + num;
+        }
+    });
+</script>

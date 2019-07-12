@@ -143,6 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Filter\DBFilter.cs" />
     <Compile Include="Filter\LoginAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -155,8 +156,11 @@
     <Compile Include="OW.Model\CarSettledInfo.cs" />
     <Compile Include="OW.Model\CarsInfo.cs" />
     <Compile Include="OW.Model\CarTypeInfo.cs" />
+    <Compile Include="OW.Model\Chart.cs" />
     <Compile Include="OW.Model\Msg.cs" />
     <Compile Include="OW.Model\ParkingInfo.cs" />
+    <Compile Include="OW.Model\Paypayzhu.cs" />
+    <Compile Include="OW.Model\PayUtil.cs" />
     <Compile Include="OW.Model\UserInfo.cs" />
     <Compile Include="OW.Model\UserTypeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -510,6 +514,16 @@
     <Content Include="wwwroot\lib\js\bootstrap.min.js" />
     <Content Include="wwwroot\msg\message.css" />
     <Content Include="wwwroot\msg\message.js" />
+    <Content Include="wwwroot\pageSplit\page.css" />
+    <Content Include="wwwroot\pageSplit\pageMe.js" />
+    <Content Include="wwwroot\pay\img\logo.png" />
+    <Content Include="wwwroot\pay\img\LOGO2.png" />
+    <Content Include="wwwroot\pay\img\wx.png" />
+    <Content Include="wwwroot\pay\img\wxts.png" />
+    <Content Include="wwwroot\pay\img\zfb.png" />
+    <Content Include="wwwroot\pay\img\zfb1.png" />
+    <Content Include="wwwroot\pay\jquery.step.css" />
+    <Content Include="wwwroot\pay\pay.css" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -538,6 +552,7 @@
     <Content Include="wwwroot\data\addresses.json" />
     <Content Include="wwwroot\data\countries.json" />
     <Content Include="Views\Home\Statistics.cshtml" />
+    <Content Include="Views\Pay\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

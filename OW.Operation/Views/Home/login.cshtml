@@ -69,7 +69,7 @@
                     dataType: "json",
                     data: { "name": $("#username").val(), "pwd": $("#password").val() },
                     success: function (data) {
-                        debugger
+                      
                         if (typeof data == "string") data = $.parseJSON(data);
 
                         if (data.status == 1) {

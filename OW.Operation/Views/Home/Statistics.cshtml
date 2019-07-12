@@ -53,27 +53,14 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">日收入统计图</h3>
+                                        <h3 class="h4">000</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">    
                                             <div id="system"style="width:99%;height:300px"></div>
                                             <script>
                                                 var myChart = echarts.init(document.getElementById('system'));
-                                                option = {
-                                                   
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['0', '3', '6', '9', '12', '15', '18', '21', '24']
-                                                    },
-                                                    yAxis: {
-                                                        type: 'value'
-                                                    },
-                                                    series: [{
-                                                        data: [100, 110, 120, 130, 100, 133, 90, 180, 70],
-                                                        type: 'line'
-                                                    }]
-                                                };
+                                                option = @Html.Raw(Session["option"]);
                                                 myChart.setOption(option);
                                             </script>
                                         </div>
@@ -89,28 +76,14 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">月收入统计图</h3>
+                                        <h3 class="h4">111</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <div id="system1" style="width:99%;height:300px"></div>
                                             <script>
                                                 var myChart = echarts.init(document.getElementById('system1'));
-                                                option = {
-
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['0', '3', '6', '9', '12', '15', '18', '21', '24']
-                                                    },
-                                                    yAxis: {
-                                                        type: 'value'
-                                                    },
-                                                    series: [{
-                                                        data: [100, 110, 120, 130, 100, 133, 90, 180, 70],
-                                                        type: 'line'
-                                                    }]
-                                                  
-                                                };
+                                                option =@Html.Raw(Session["option"]);
                                                 myChart.setOption(option);
                                               
                                             </script>
@@ -127,28 +100,14 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">年收入统计图</h3>
+                                        <h3 class="h4">222222222</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <div id="system2" style="width:99%;height:300px"></div>
                                             <script>
                                                 var myChart = echarts.init(document.getElementById('system2'));
-                                                option = {
-
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['0', '3', '6', '9', '12', '15', '18', '21', '24']
-                                                    },
-                                                    yAxis: {
-                                                        type: 'value'
-                                                    },
-                                                    series: [{
-                                                        data: [100, 110, 120, 130, 100, 133, 90, 180, 70],
-                                                        type: 'line'
-                                                    }]
-
-                                                };
+                                                option = @Html.Raw(Session["option"]);
                                                 myChart.setOption(option);
 
                                             </script>
@@ -165,28 +124,14 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Compact Table</h3>
+                                        <h3 class="h4">33333333</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <div id="system3" style="width:99%;height:300px"></div>
                                             <script>
                                                 var myChart = echarts.init(document.getElementById('system3'));
-                                                option = {
-
-                                                    xAxis: {
-                                                        type: 'category',
-                                                        data: ['0', '3', '6', '9', '12', '15', '18', '21', '24']
-                                                    },
-                                                    yAxis: {
-                                                        type: 'value'
-                                                    },
-                                                    series: [{
-                                                        data: [100, 110, 120, 130, 100, 133, 90, 180, 70],
-                                                        type: 'line'
-                                                    }]
-
-                                                };
+                                                option =@Html.Raw(Session["option"]);
                                                 myChart.setOption(option);
 
                                             </script>

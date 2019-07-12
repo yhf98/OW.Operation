@@ -175,7 +175,16 @@ namespace OW.Operation.OW.DAL
 
         }
 
-
+        /// <summary>
+        ///  删除车辆
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool DeleteCar(int id)
+        {
+            string sql = "DELETE FROM t_Cars WHERE CarID="+id+"";
+            return DBHelper.GetBoool(sql);
+        }
 
 
     }
