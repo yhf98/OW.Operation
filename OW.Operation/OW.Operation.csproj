@@ -512,6 +512,41 @@
     <Content Include="wwwroot\lib\js\bootstrap.bundle.min.js" />
     <Content Include="wwwroot\lib\js\bootstrap.js" />
     <Content Include="wwwroot\lib\js\bootstrap.min.js" />
+    <Content Include="wwwroot\map\assets\jquery-1.8.2.js" />
+    <Content Include="wwwroot\map\assets\jquery-jvectormap-map.js" />
+    <Content Include="wwwroot\map\assets\jquery-jvectormap-us-aea-en.js" />
+    <Content Include="wwwroot\map\assets\jquery-jvectormap-us-lcc-en.js" />
+    <Content Include="wwwroot\map\assets\jquery-jvectormap-us-merc-en.js" />
+    <Content Include="wwwroot\map\assets\jquery-jvectormap-us-mill-en.js" />
+    <Content Include="wwwroot\map\assets\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="wwwroot\map\index.html" />
+    <Content Include="wwwroot\map\jquery-jvectormap.css" />
+    <Content Include="wwwroot\map\jquery-jvectormap.js" />
+    <Content Include="wwwroot\map\jquery-mousewheel.js" />
+    <Content Include="wwwroot\map\lib\abstract-canvas-element.js" />
+    <Content Include="wwwroot\map\lib\abstract-element.js" />
+    <Content Include="wwwroot\map\lib\abstract-shape-element.js" />
+    <Content Include="wwwroot\map\lib\color-scale.js" />
+    <Content Include="wwwroot\map\lib\data-series.js" />
+    <Content Include="wwwroot\map\lib\jvectormap.js" />
+    <Content Include="wwwroot\map\lib\numeric-scale.js" />
+    <Content Include="wwwroot\map\lib\ordinal-scale.js" />
+    <Content Include="wwwroot\map\lib\proj.js" />
+    <Content Include="wwwroot\map\lib\simple-scale.js" />
+    <Content Include="wwwroot\map\lib\svg-canvas-element.js" />
+    <Content Include="wwwroot\map\lib\svg-circle-element.js" />
+    <Content Include="wwwroot\map\lib\svg-element.js" />
+    <Content Include="wwwroot\map\lib\svg-group-element.js" />
+    <Content Include="wwwroot\map\lib\svg-path-element.js" />
+    <Content Include="wwwroot\map\lib\svg-shape-element.js" />
+    <Content Include="wwwroot\map\lib\vector-canvas.js" />
+    <Content Include="wwwroot\map\lib\vml-canvas-element.js" />
+    <Content Include="wwwroot\map\lib\vml-circle-element.js" />
+    <Content Include="wwwroot\map\lib\vml-element.js" />
+    <Content Include="wwwroot\map\lib\vml-group-element.js" />
+    <Content Include="wwwroot\map\lib\vml-path-element.js" />
+    <Content Include="wwwroot\map\lib\vml-shape-element.js" />
+    <Content Include="wwwroot\map\lib\world-map.js" />
     <Content Include="wwwroot\msg\message.css" />
     <Content Include="wwwroot\msg\message.js" />
     <Content Include="wwwroot\pageSplit\page.css" />
@@ -553,6 +588,7 @@
     <Content Include="wwwroot\data\countries.json" />
     <Content Include="Views\Home\Statistics.cshtml" />
     <Content Include="Views\Pay\Index.cshtml" />
+    <Content Include="Views\Home\Map.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
@@ -573,7 +609,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55821</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44335/</IISUrl>
+          <IISUrl>https://localhost:44336/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

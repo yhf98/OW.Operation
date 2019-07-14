@@ -89,5 +89,24 @@ namespace OW.Operation.OW.BLL
             return DAL.DataServer.DeleteCar(id);
         }
 
-     } 
+        /// <summary>
+        /// 查询收入数据数据
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static List<string> GetIncomeData(int type, out List<int> value)
+        {
+            return DAL.DataServer.GetIncomeData(type,out value);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static List<CarSettledInfo> GetCarSettledList()
+        {
+            return DAL.DataServer.GetCarSettledList();
+        }
+
+    } 
 }

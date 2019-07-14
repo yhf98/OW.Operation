@@ -53,6 +53,82 @@ namespace OW.Operation.Controllers
 
             ViewBag.scared = OW.BLL.DataManager.GetCarSettled();
 
+
+            ///////////////////////////////////////////////////////////////////////////////////
+            List<CarSettledInfo> listCar = OW.BLL.DataManager.GetCarSettledList();
+
+            List<markers> markersList = new List<markers>();
+
+
+            int count = 0;
+
+            foreach (CarSettledInfo info in listCar)
+            {
+                if (count == 0)
+                {
+                    int x = new Random().Next(10, 400), y = new Random().Next(10, 250);
+
+                    markers s = new markers()
+                    {
+                        coords = new int[] { x, y },
+                        name = info.License,
+                        style =
+                        new style() { fill = "red" }
+                    };
+                    markersList.Add(s);
+                }
+                else
+                {
+                    int x = new Random().Next(10, 400), y = new Random().Next(10, 250);
+
+                    markers s = new markers()
+                    {
+                        coords = new int[] { x, y },
+                        name = info.License,
+                        style =
+                        new style() { fill = "green" }
+                    };
+                    markersList.Add(s);
+                }
+
+                count++;
+
+                 
+               
+            }
+
+            var map = new
+            {
+                map = "map",
+                markers = markersList
+            };
+
+            //var map = new {
+            //    map = "map",
+            //    markers = new List<markers>(){
+            //       new markers(){
+            //        coords =new int []{ 200,300},
+            //        name = "车辆1",
+            //        style =
+            //           new style(){ fill="red"}
+            //       },
+            //       new markers(){
+            //        coords = new int []{ 230,300},
+            //        name = "车辆2",
+            //        style = 
+            //           new style(){ fill="red"}
+            //       },
+            //        new markers(){
+            //        coords = new int []{ 250,30},
+            //        name = "车辆2",
+            //        style =
+            //           new style(){ fill="red"}
+            //       }
+            //    }
+            //};
+
+            Session["map"] = JsonConvert.SerializeObject(map);
+
             return View();
         }
         public ActionResult Svgdisplay()
@@ -234,33 +310,119 @@ namespace OW.Operation.Controllers
         [Login(IsCheck = true)]
         public ActionResult Statistics()
         {
-
-            var options =new {
-                xAxis= new XAxis
+            
+            if (!string.IsNullOrEmpty(Request.QueryString["type"]))
+            {
+                ///////按月份查询//////////////////////////////////////////////////////////////
+                if (Convert.ToInt32(Request.QueryString["type"]) == 1)
                 {
-                    data = new List<string>() { "0", "3", "6", "9", "12" },
-                    type = "category",
-                },
-                yAxis=new YAxis {
-                    type = "value"
-                },
-                series=new Series {
-                    data = new List<int>() { 100, 110, 120, 130, 100, 133, 90, 180, 70 },
-                    type = "line" }
-            };
+                    int type = Convert.ToInt32(Request.QueryString["type"]);
 
-            Session["option"] = JsonConvert.SerializeObject(options);
+                    List<int> value = new List<int>();
+                    List<string> key = OW.BLL.DataManager.GetIncomeData(type, out value);
+
+                    var options = new
+                    {
+                        title = new Title()
+                        {
+                            text = "月收入统计"
+                        },
+                        xAxis = new XAxis
+                        {
+                            data = key,
+                            type = "category",
+                        },
+                        yAxis = new YAxis
+                        {
+                            type = "value"
+                        },
+                        series = new Series
+                        {
+                            data =value,
+                            type = "line"
+                        }
+                    };
+
+                    Session["option"] = JsonConvert.SerializeObject(options);
+                }
+                ///////按月份查询//////////////////////////////////////////////////////////////
+                ///
+
+
+
+                //////按年份查询//////////////////////////////////////////////////////////////////
+                if (Convert.ToInt32(Request.QueryString["type"]) == 2)
+                {
+                    int type = Convert.ToInt32(Request.QueryString["type"]);
+
+                    List<int> value = new List<int>();
+                    List<string> key = OW.BLL.DataManager.GetIncomeData(type, out value);
+
+                    var options = new
+                    {
+                        title = new Title()
+                        {
+                            text = "年收入统计"
+                        },
+                        xAxis = new XAxis
+                        {
+                            data = key,
+                            type = "category",
+                        },
+                        yAxis = new YAxis
+                        {
+                            type = "value"
+                        },
+                        series = new Series
+                        {
+                            data = value,
+                            type = "pie"
+                        }
+                    };
+
+                    Session["option"] = JsonConvert.SerializeObject(options);
+                }
+
+                //////按年份查询//////////////////////////////////////////////////////////////////
+
+            }
+
+
+            ///////按日期查询///////////////////////////////////////////////////////////////
+            else
+            {
+                int type = Convert.ToInt32(Request.QueryString["type"]);
+
+                List<int> value = new List<int>();
+                List<string> key = OW.BLL.DataManager.GetIncomeData(type, out value);
+                var options = new
+                {
+                    title=new Title() {
+                        text="日收入统计"
+                    },
+                    xAxis = new XAxis
+                    {
+                        data =key,
+                        type = "category",
+                    },
+                    yAxis = new YAxis
+                    {
+                        type = "value"
+                    },
+                    series = new Series
+                    {
+                        data =value,
+                        type ="bar"
+                    }
+                };
+
+                Session["option"] = JsonConvert.SerializeObject(options);
+            }
+
+            ///////按日期查询///////////////////////////////////////////////////////////////
+
 
             return View();
-
-            //new XAxis
-            //{
-            //    data =new List<string>(){"0","3","6","9","12" }, type= "category",
-            //};
-            //new YAxis { type = "value" };
-
-            //new Series { data=new List<int>() {1 ,1,1,1}, type= "line" };
-            //return View();
         }
 
         /// <summary>
@@ -295,7 +457,10 @@ namespace OW.Operation.Controllers
 
         }
 
-
+        public ActionResult Map()
+        {
+            return View();
+        }
 
     }
 }

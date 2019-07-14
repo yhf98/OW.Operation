@@ -32,19 +32,20 @@
             <div class="content-inner">      
                 <header class="page-header">
                     <div class="container-fluid">
-                        <h2 class="no-margin-bottom">充值车辆</h2>
+                        <h2 class="no-margin-bottom">收费统计</h2>
                     </div>
                 </header>
                 <div class="breadcrumb-holder container-fluid">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item active">Tables            </li>
+                        <li class="breadcrumb-item"><a href="/Home/Index">主页</a></li>
+                        <li class="breadcrumb-item active">选项</li>
                     </ul>
                 </div>
                 <section class="tables">
+                   
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-9">
                                 <div class="card">
                                     <div class="card-close">
                                         <div class="dropdown">
@@ -53,11 +54,18 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">000</h3>
+                                        <h3 class="h4">
+                                            <select id="select" style="width:200px;height:35px;">
+                                                <option value="-1">--选择--</option>
+                                                <option value="0">按日查询</option>
+                                                <option value="1">按月查询</option>
+                                                <option value="2">按年查询</option>
+                                            </select>
+                                        </h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">    
-                                            <div id="system"style="width:99%;height:300px"></div>
+                                            <div id="system"style="width:99%;height:500px"></div>
                                             <script>
                                                 var myChart = echarts.init(document.getElementById('system'));
                                                 option = @Html.Raw(Session["option"]);
@@ -67,7 +75,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            @*<div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-close">
                                         <div class="dropdown">
@@ -138,13 +146,27 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </section>             
             </div>
         </div>
     </div>
+    <script src="~/wwwroot/comm/jquery-3.3.1.js"></script>
+   <script>
+       $(function () {
+
+           $("#select").change(function () {
+
+               var type=$("#select option:checked").val()
+
+               location.href="../Home/Statistics?type="+type+""
+
+           });
+
+       });
+   </script>
 
 </body>
 </html>

@@ -1,0 +1,102 @@
+﻿
+
+<link href="../wwwroot/map/jquery-jvectormap.css" rel="stylesheet" />
+
+<div id="map1" style="width: 600px; height: 600px">
+
+</div>
+
+
+
+<script src="../wwwroot/map/assets/jquery-1.8.2.js"></script>
+<script src="../wwwroot/map/jquery-jvectormap.js"></script>
+<script src="../wwwroot/map/jquery-mousewheel.js"></script>
+
+<script src="../wwwroot/map/lib/jvectormap.js"></script>
+
+<script src="../wwwroot/map/lib/abstract-element.js"></script>
+<script src="../wwwroot/map/lib/abstract-canvas-element.js"></script>
+<script src="../wwwroot/map/lib/abstract-shape-element.js"></script>
+
+<script src="../wwwroot/map/lib/svg-element.js"></script>
+<script src="../wwwroot/map/lib/svg-group-element.js"></script>
+<script src="../wwwroot/map/lib/svg-canvas-element.js"></script>
+<script src="../wwwroot/map/lib/svg-shape-element.js"></script>
+<script src="../wwwroot/map/lib/svg-path-element.js"></script>
+<script src="../wwwroot/map/lib/svg-circle-element.js"></script>
+
+<script src="../wwwroot/map/lib/vml-element.js"></script>
+<script src="../wwwroot/map/lib/vml-group-element.js"></script>
+<script src="../wwwroot/map/lib/vml-canvas-element.js"></script>
+<script src="../wwwroot/map/lib/vml-shape-element.js"></script>
+<script src="../wwwroot/map/lib/vml-path-element.js"></script>
+<script src="../wwwroot/map/lib/vml-circle-element.js"></script>
+
+<script src="../wwwroot/map/lib/vector-canvas.js"></script>
+<script src="../wwwroot/map/lib/simple-scale.js"></script>
+<script src="../wwwroot/map/lib/numeric-scale.js"></script>
+<script src="../wwwroot/map/lib/ordinal-scale.js"></script>
+<script src="../wwwroot/map/lib/color-scale.js"></script>
+<script src="lib/data-series.js"></script>
+<script src="../wwwroot/map/lib/proj.js"></script>
+<script src="../wwwroot/map/lib/world-map.js"></script>
+
+<script src="../wwwroot/map/assets/jquery-jvectormap-map.js"></script>
+
+<script>
+    $(function () {
+        var map = $('#map1').vectorMap({
+            map: 'map',
+            markers: [{
+                coords: [100, 100],
+                name: '粤A A12DC',
+                style: {
+                    fill: 'green'
+                }
+            },
+            {
+                coords: [200, 200],
+                name: 'Marker 2',
+                style: {
+                    fill: 'green'
+                }
+            },
+            {
+                coords: [110, 100],
+                name: 'Marker 1',
+                style: {
+                    fill: 'green'
+                }
+            },
+            {
+                coords: [210, 200],
+                name: 'Marker 2',
+                style: {
+                    fill: 'green'
+                }
+            },
+            {
+                coords: [120, 100],
+                name: 'Marker 1',
+                style: {
+                    fill: 'green'
+                }
+            },
+            {
+                coords: [230, 200],
+                name: 'Marker 2',
+                style: {
+                    fill: 'green'
+                }
+            },
+            {
+                coords: [240, 200],
+                name: 'Marker 2',
+                style: {
+                    fill: 'red'
+                }
+            },
+            ]
+        });
+    })
+</script>

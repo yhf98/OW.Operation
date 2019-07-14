@@ -13,6 +13,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
+   
 
 </head>
 <body>
@@ -109,8 +110,12 @@
                             </div>
                             <!-- 车库位置图-->
                             <div class="chart col-lg-6 col-12">
-                                <div class="line-chart bg-white d-flex align-items-center justify-content-center has-shadow">
-                                    @Html.Partial("Svgdisplay")
+                                <div class="" style="border:0px solid red;width:600px;height:350px;position:relative;">
+
+                                    <div id="map1" style="width: 100%; height: 100%;border:0px solid green;">
+
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="chart col-lg-3 col-12">
@@ -159,71 +164,6 @@
                             <!-- Project-->
                         }
 
-
-
-
-
-
-
-                        @*<div class="project">
-                            <div class="row bg-white has-shadow">
-                                <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                                    <div class="project-title d-flex align-items-center">
-                                        <div class="image has-shadow"><img src="~/wwwroot/comm/img/project-2.jpg" alt="..." class="img-fluid"></div>
-                                        <div class="text">
-                                            <h3 class="h4">车牌号：桂A·686868</h3><small>保时捷</small>
-                                        </div>
-                                    </div>
-                                    <div class="project-date"><span class="hidden-sm-down">6月27凌晨4点24分入库</span></div>
-                                </div>
-                                <div class="right-col col-lg-6 d-flex align-items-center">
-                                    <div class="time"><i class="fa fa-clock-o"></i>6月28日12:00出库</div>
-                                    <div class="comments"><i class="fa fa-comment-o"></i>充值车：本次停车免费</div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Project-->
-                        <div class="project">
-                            <div class="row bg-white has-shadow">
-                                <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                                    <div class="project-title d-flex align-items-center">
-                                        <div class="image has-shadow"><img src="~/wwwroot/comm/img/project-3.jpg" alt="..." class="img-fluid"></div>
-                                        <div class="text">
-                                            <h3 class="h4">车牌号：桂A·1C3456</h3><small>凯迪拉克</small>
-                                        </div>
-                                    </div>
-                                    <div class="project-date"><span class="hidden-sm-down">6月27凌晨4点24分入库</span></div>
-                                </div>
-                                <div class="right-col col-lg-6 d-flex align-items-center">
-                                    <div class="time"><i class="fa fa-clock-o"></i>6月28日12:00出库</div>
-                                    <div class="comments"><i class="fa fa-comment-o"></i>外来车辆：本次停车费用50元</div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Project-->
-                        <div class="project">
-                            <div class="row bg-white has-shadow">
-                                <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                                    <div class="project-title d-flex align-items-center">
-                                        <div class="image has-shadow"><img src="~/wwwroot/comm/img/project-4.jpg" alt="..." class="img-fluid"></div>
-                                        <div class="text">
-                                            <h3 class="h4">车牌号：桂A·7A8D98</h3><small>未知车型</small>
-                                        </div>
-                                    </div>
-                                    <div class="project-date"><span class="hidden-sm-down">6月27凌晨4点24分入库</span></div>
-                                </div>
-                                <div class="right-col col-lg-6 d-flex align-items-center">
-                                    <div class="time"><i class="fa fa-clock-o"></i>6月28日12:00出库</div>
-                                    <div class="comments"><i class="fa fa-comment-o"></i>外来车辆：本次停车费用50元</div>
-
-                                </div>
-                            </div>
-                        </div>
-                    
-
-                        //////*@
                     </div>
                 </section>
 
@@ -231,10 +171,14 @@
         </div>
     </div>
     <script src="~/wwwroot/comm/echarts.js"></script>
-    <script>       
+    <script>
+
         var myChart = echarts.init(document.getElementById('system'));
         option =@Html.Raw(Session["option"]);
         myChart.setOption(option);
     </script>
+
+
+    
 </body>
 </html>

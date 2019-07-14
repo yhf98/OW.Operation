@@ -104,10 +104,9 @@ namespace OW.Operation.OW.DAL
         /// <returns></returns>
         public static int GetParkingInfos()
         {
-            string sql = "SELECT COUNT(*) FROM t_Parking WHERE STATUS=0";
+            string sql = "SELECT COUNT(*) FROM t_CarSettled ";
             using (MySqlDataReader dr = DBHelper.GetReader(sql))
             {
-
                 if (dr.Read())
                 {
                     return 50-Convert.ToInt32(dr[0]);
@@ -146,6 +145,82 @@ namespace OW.Operation.OW.DAL
             }
 
         }
+
+
+        /// <summary>
+        /// 车辆信息
+        /// </summary>
+        /// <returns></returns>
+        public static List<CarSettledInfo> GetCarSettledList()
+        {
+            string sql = "SELECT* FROM t_CarSettled d,t_Cars c where d.CarID=c.CarID  ORDER BY c.CarID DESC";
+            List<CarSettledInfo> list = new List<CarSettledInfo>();
+
+            using (MySqlDataReader dr = DBHelper.GetReader(sql))
+            {
+                while (dr.Read())
+                {
+                    CarSettledInfo info = new CarSettledInfo();
+
+                    info.SettleID = Convert.ToInt32(dr["SettleID"]);
+                    info.SettledDate = Convert.ToString(dr["SettledDate"]);
+                    info.License = Convert.ToString(dr["License"]);
+                    info.Brand = Convert.ToString(dr["Brand"]);
+                    info.Color = Convert.ToString(dr["Color"]);
+                    info.Color = Convert.ToString(dr["Color"]);
+                    list.Add(info);
+
+                }
+
+                return list;
+
+            }
+
+        }
+
+
+        /// <summary>
+        /// 查询输入数据
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static List<string> GetIncomeData(int type,out List<int> value)
+        {
+            string sql = "";  
+            List<string> key = new List<string>();
+            value = new List<int>();
+            if (type == 0)
+            {
+                 sql = "select DATE_FORMAT(Date,'%Y年%m月%d日') days,SUM(price) count from t_Income group by days;";
+            }
+            else if(type==1)
+            {
+                sql = "select DATE_FORMAT(Date,'%Y年%m月') months,SUM(price) count from t_Income group by months;";
+            }
+            else
+            {
+                sql = "select DATE_FORMAT(Date,'%Y年') years,SUM(price) count from t_Income group by years;";
+            }
+
+            MySqlDataReader dr = DBHelper.GetReader(sql);
+            while (dr.Read())
+            {
+                key.Add(Convert.ToString(dr[0]));
+                value.Add(Convert.ToInt32(dr[1]));
+            }
+
+            return key;
+        } 
+
+
+
+
+
+
+
+
+
+
 
         /// <summary>
         /// 管理员表

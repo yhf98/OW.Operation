@@ -53,4 +53,37 @@ namespace OW.Operation.OW.Model
         public List<Series> series { get; set; }
     }
 
+    public class DataItem
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int value { get; set; }
+
+        /// <summary>
+        /// 视频广告
+        /// </summary>
+        public string name { get; set; }
+
+    }
+
+
+    
+    public class Title
+    {
+        public string text  { get; set; }
+    }
+
+    public class markers
+    {
+        public int [] coords { get; set; }
+        public string name { get; set; }
+        public style style { get; set; }
+    }
+
+    public class style
+    {
+        public string fill { get; set; }
+    }
+
 }
